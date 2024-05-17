@@ -58,7 +58,7 @@ Route::group(['middleware' => 'api'], function () {
 
 Route::group(['middleware' => 'api'], function () {
     Route::get('mum-registration', [MumRegistrationController::class, 'showRegistrationForm']);
-    Route::post('mum-registration',[MumRegistrationController::class, 'processRegistration']);
+    Route::post('mum-registration',[MumRegistrationController::class, 'register']);
 });
 
 Route::group(['middleware' => 'api'], function () {

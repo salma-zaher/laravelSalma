@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\mom;
+use App\Models\Mom;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +30,7 @@ class MumRegistrationController extends Controller
             }
 
 
-            $user = mom::create([
+            $user = Mom::create([
                 'id'=>$request->id,
                 'baby_name'=>$request->baby_name,
                 'gender'=>$request->gender,
