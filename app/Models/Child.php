@@ -12,14 +12,15 @@ class Child extends Model
     protected $table = 'children';
 
     protected $fillable = [
+       ' id',
         'baby_name',
         'gender',
         'date_of_birth',
     ];
 
-    public static function create(array $array)
-    {
-    }
+//    public static function create(array $array)
+//    {
+//    }
 
 
 }

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pregnancy', function (Blueprint $table) {
-            $table->string('week');
+            $table->integer('week');
             $table->double('length');
             $table->double('weight');
             $table->string('hCG norms', length: 100);
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->text('Fruits_and_Veggies');
             $table->text('Fruits_and_Veggies_photo');
             $table->text('baby_photo');
-            $table->string('youtupe_vedio');
+            $table->text('youtupe_vedio');
         });
     }
 

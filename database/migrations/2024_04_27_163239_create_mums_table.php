@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePregnantRegistrationsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreatePregnantRegistrationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pregnant_registrations', function (Blueprint $table) {
+        Schema::create('Mums', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('age_by_week')->nullable();
+            $table->string('baby_name');
+            $table->date('date_of_birth')->nullable();
+            $table->enum('gender', ['male', 'female', 'other']);
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreatePregnantRegistrationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pregnant_registrations');
+        Schema::dropIfExists('Moms');
     }
-}
+};

@@ -19,9 +19,9 @@ class PregnantRegistrationController extends Controller
         try {
             $validateUser = Validator::make($request->all(), [
                 'id' => 'required|integer',
-                'first_day_of_last_period' => 'nullable|date',
-                'estimated_due_date' => 'nullable|date',
-                'date_of_conception' => 'nullable|date',
+                'first_day_of_last_period' => 'nullable|date|date_format:Y-m-d',
+                'estimated_due_date' => 'nullable|date|date_format:Y-m-d',
+                'date_of_conception' => 'nullable|date|date_format:Y-m-d',
             ]);
 
             if ($validateUser->fails()) {
@@ -32,7 +32,7 @@ class PregnantRegistrationController extends Controller
                 ], 401);
             }
 
-            $user = User::create([
+            $user = Pregnant::create([
                 'id' => $request->id,
                 'first_day_of_last_period' => $request->first_day_of_last_period,
                 'estimated_due_date' => $request->estimated_due_date,
@@ -54,6 +54,8 @@ class PregnantRegistrationController extends Controller
             if ($providedDate) {
                 $today = Carbon::today();
                 $ageInWeeks = $providedDate->diffInWeeks($today);
+                $user->age_by_week = $ageInWeeks;
+                $user->save();
             }
 
             return response()->json([

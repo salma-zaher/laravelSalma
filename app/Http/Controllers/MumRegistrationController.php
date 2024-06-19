@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Mom;
+use App\Models\Mum;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -11,14 +11,15 @@ use PhpParser\Node\Stmt\TryCatch;
 
 class MumRegistrationController extends Controller
 {
-    public function register (Request $request): \Illuminate\Http\JsonResponse
+    public function register(Request $request): \Illuminate\Http\JsonResponse
     {
         try {
             $validateUser= Validator::make($request->all(),
             [
                 'id'=> 'required|integer',
                 'baby_name' => 'required|string|max:255',
-                'gender' => 'required|in:male,female,other',
+                'gender'=>'required|in:male,female,other',
+                'date_of_birth' => 'required|date|date_format:Y-m-d',
             ]);
 
             if ($validateUser->fails()) {
@@ -30,10 +31,11 @@ class MumRegistrationController extends Controller
             }
 
 
-            $user = Mom::create([
+            $user = Mum::create([
                 'id'=>$request->id,
-                'baby_name'=>$request->baby_name,
                 'gender'=>$request->gender,
+                'baby_name'=>$request->baby_name,
+                'date_of_birth'=>$request->date_of_birth,
             ]);
 
             return response()->json([
@@ -51,6 +53,13 @@ class MumRegistrationController extends Controller
         }
     }
 
+//        public function showRegistrationForm()
+//    {
+//        // Return a view or any other response as needed for the registration form
+//        // For now, returning an empty response
+//        return response()->json([]);
+//    }
+
 }
 
 /*
@@ -61,12 +70,12 @@ use App\Models\Mom;
 
 class MumRegistrationController extends Controller
 {
-    public function showRegistrationForm()
-    {
-        // Return a view or any other response as needed for the registration form
-        // For now, returning an empty response
-        return response()->json([]);
-    }
+//    public function showRegistrationForm()
+//    {
+//        // Return a view or any other response as needed for the registration form
+//        // For now, returning an empty response
+//        return response()->json([]);
+//    }
 
     public function processRegistration(Request $request)
     {
