@@ -13,8 +13,10 @@ return new class extends Migration
     {
         //
         Schema::create('exercises', function (Blueprint $table) {
-            $table->bigIncrements('exercise_id')->unique();
+            
+            $table->integer('tirmester ');
             $table->string('vedio_link', length: 255);
+            $table->string('title', length: 255);
             $table->text('discription');
         });
     }

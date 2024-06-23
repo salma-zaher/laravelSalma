@@ -11,8 +11,10 @@ class Exercise extends Model
     protected $table = 'exercises';
 
     protected $fillable = [
-        'exercise_id',
+        
+        'tirmester',
         'vedio_link',
         'title',
-        'discription'];
+        'discription',
+    ];
 }

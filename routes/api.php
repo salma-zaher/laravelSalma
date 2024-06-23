@@ -32,7 +32,7 @@ Route::get('Fruits',[NutritionController::class,'fruit']);
 Route::get('/boyNames',[BabyNamesController::class,'getboyname']);
 Route::get('/girlNames',[BabyNamesController::class,'getgirlname']);
 Route::get('/home/{week}',[PregnancyController::class,'pregnancy']);
-Route::get('/exercise',[ExerciseController::class,'exercise']);
+Route::get('/exercise/{tirmester}',[ExerciseController::class,'exercise']);
 
 Route::group(['middleware' => 'api'], function () {
     Route::get('child_registration', [ChildController::class, 'showRegistrationForm'])->name('child-registration');

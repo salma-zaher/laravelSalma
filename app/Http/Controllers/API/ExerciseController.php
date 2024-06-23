@@ -11,7 +11,7 @@ class ExerciseController extends Controller
 {
   //
 
-    function exercise(Request $request){
+   /* function exercise(Request $request){
     try {
 
         $exercise = Exercise::all();
@@ -24,6 +24,22 @@ class ExerciseController extends Controller
             'message'=>$th->getMessage()
         ], 500);
     };
-}
+}*/
+public function exercise(Request $request,$currenttrimester){
+    try {
+          $currenttrimester = $request->tirmester;
+           $exercise = exercise::where("tirmester", $currenttrimester)->get();
+           return response()->json([
+               'status'=>'success',
+             'message'=>'home',
+              'data'=>$exercise
+            ],200);
+        }catch (\Throwable $th) {
+           return response()->json([
+                'status'=>false,
+                 'message'=>$th->getMessage()
+                ], 500);
+        }
+    }
 }
 
